@@ -10,7 +10,12 @@
   },
   "keywords": [
     "jamen",
-    "pull-bundle-html"
+    "pull-stream",
+    "pull-build-tools",
+    "pull-bundle",
+    "bundle",
+    "html",
+    "boilerplate"
   ],
   "devDependencies": {
     "pull-files": "^1.1.0",
