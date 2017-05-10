@@ -33,7 +33,7 @@ yarn add pull-bundle-html
 
 ## Usage
 
-### `html(path?, settings)``
+### `html(path?, settings)`
 
 Takes JS and CSS files out of the stream, and bundles them into boilerplate HTML with your settings
 
