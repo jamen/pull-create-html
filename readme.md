@@ -19,7 +19,7 @@ pull(
 )
 ```
 
-Also look at [`pull-bundle`](https://github.com/jamen/pull-bundle) to Browserify the JavaScript.
+Also look at [`pull-bundle-js`](https://github.com/jamen/pull-bundle-js) to Browserify the JavaScript.
 
 ## Install
 
@@ -45,6 +45,11 @@ Takes JS and CSS files out of the stream, and bundles them into boilerplate HTML
  - `description` sets the `<meta name='description'>` element
  - `keywords` sets the `<meta name='keywords'>` element
  - `base` sets the `file.base` on the output HTML file
+
+# Also see
+
+ - [`pull-files`](https://github.com/jamen/pull-files) for reading and writing files
+ - [`pull-bundle-js`](https://github.com/jamen/pull-bundle-js) for bundling JS with Browserify
 
 ---
 
