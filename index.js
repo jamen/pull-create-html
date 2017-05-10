@@ -9,10 +9,6 @@ function html (path, options) {
     options = path
     path = options.path
   }
-
-  if (!path) {
-    throw new Error('A path for the HTML bundle is requred')
-  }
   
   const js = []
   const css = []
