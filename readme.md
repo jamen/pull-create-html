@@ -6,7 +6,7 @@
 ```js
 const pull = require('pull-stream')
 const { read, write } = require('pull-files')
-const bundle = require('pull-bundle')
+const bundle = require('pull-bundle-js')
 const html = require('pull-bundle-html')
 
 pull(
