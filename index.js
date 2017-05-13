@@ -9,6 +9,8 @@ function html (path, options) {
     options = path
     path = options.path
   }
+
+  if (!options) options = {}
   
   const js = []
   const css = []
