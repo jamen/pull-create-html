@@ -1,6 +1,6 @@
 
-const cheerio = require('cheerio')
 const { extname } = require('path')
+const h = require('hyperscript')
 
 module.exports = html
 
@@ -29,22 +29,22 @@ function html (path, options) {
 
 
   function create () {
-    return Buffer.from(cheerio.load(`
-      <!DOCTYPE html>
-      <html lang='${lang}'>
-        <head>
-          <title>${title}</title>
-          <meta charset='${charset}'>
-          <meta name='description' content="${description}">
-          <meta name='keywords' content='${keywords}'>
-          <style>${Buffer.concat(css).toString('utf8')}</style>
-        </head>
-        <body>
-          ${body}
-          <script>${Buffer.concat(js).toString('utf8')}</script>
-        </body>
-      </html>
-    `, { normalizeWhitespace: true }).html())
+    return Buffer.from(
+      '<!DOCTYPE html> ' +
+      h('html', { lang }, [
+        h('head', [
+          h('title', title),
+          h('meta', { charset }),
+          h('meta', { name: 'description', content: description }),
+          h('meta', { name: 'keywords', content: keywords }),
+          h('style', Buffer.concat(css).toString('utf8'))
+        ]),
+        h('body', [
+          body,
+          h('script', Buffer.concat(js).toString('utf8'))
+        ])
+      ]).outerHTML
+    )
   }
 
   return function reader (read) {
