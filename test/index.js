@@ -19,4 +19,18 @@ test('bundles html', t => {
   )
 })
 
+test('script async', t => {
+  t.plan(3)
+
+  pull(
+    read([ 'foo.js'], { cwd: __dirname }),
+    html('foo.html', { scriptAsync: true}),
+    drain(file => {
+      const html = file.data.toString()
+      t.assert(html.indexOf('async="true"') > -1, 'script has async attribute')
+      t.assert(html.indexOf('async="true"') < html.indexOf('</head>'), 'script is before closing head tag')
+    }, t.false)
+  )
+})
+
 
