@@ -1,6 +1,6 @@
 
 const { extname } = require('path')
-const h = require('hyperscript')
+const h = require('h2ml')
 
 module.exports = html
 
@@ -46,7 +46,7 @@ function html (path, options) {
           body,
           !options.scriptAsync ? h('script', bufferedJS) : ''
         ])
-      ]).outerHTML
+      ])
     )
   }
 

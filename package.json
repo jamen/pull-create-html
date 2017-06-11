@@ -22,6 +22,6 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "hyperscript": "^2.0.2"
+    "h2ml": "^0.3.0"
   }
 }
