@@ -29,6 +29,8 @@ function html (path, options) {
 
 
   function create () {
+    const bufferedJS = Buffer.concat(js).toString('utf8')
+    
     return Buffer.from(
       '<!DOCTYPE html> ' +
       h('html', { lang }, [
@@ -37,11 +39,12 @@ function html (path, options) {
           h('meta', { charset }),
           h('meta', { name: 'description', content: description }),
           h('meta', { name: 'keywords', content: keywords }),
-          h('style', Buffer.concat(css).toString('utf8'))
+          h('style', Buffer.concat(css).toString('utf8')),
+          options.scriptAsync ? h('script', {'async': true}, bufferedJS) : ''
         ]),
         h('body', [
           body,
-          h('script', Buffer.concat(js).toString('utf8'))
+          !options.scriptAsync ? h('script', bufferedJS) : ''
         ])
       ]).outerHTML
     )
