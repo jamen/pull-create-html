@@ -45,6 +45,7 @@ Takes JS and CSS files out of the stream, and bundles them into boilerplate HTML
  - `description` sets the `<meta name='description'>` element
  - `keywords` sets the `<meta name='keywords'>` element
  - `base` sets the `file.base` on the output HTML file
+ - `scriptAsync` lets the JS files load async by setting `<script async="true">` in the `<head>`
 
 # Also see
 
