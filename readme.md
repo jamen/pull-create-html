@@ -72,8 +72,6 @@ Creates an html file from js and css file streams, with several options configur
 
 Files in the js/css stream are [concatenated together](https://github.com/jamen/pull-concat-files).  Allows streaming a directory of plain css files, for example.
 
-Also see [`pull-pair`](https://github.com/pull-stream/pull-pair) for linking separate js/css pipelines:
-
 ```js
 pull(
   html('app.html', {
@@ -104,6 +102,7 @@ pull(
  - [`pull-minify-js`](https://github.com/jamen/pull-minify-js)
  - [`pull-concat-files`](https://github.com/jamen/pull-concat-files)
  - [`pull-minify-css`](https://github.com/jamen/pull-minify-css)
+ - [`pull-pair`](https://github.com/pull-stream/pull-pair)
 
 ---
 
