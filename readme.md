@@ -10,8 +10,11 @@ var { read, write } = require('pull-files')
 var bundle = require('pull-bundle-js')
 var html = require('pull-create-html')
 
-// Create js files (bundle & minify)
+// Content streams
+var css = pair()
 var js = pair()
+
+// Create js files (bundle & minify)
 pull(
   read(__dirname + '/lib/index.js'),
   bundle([ ...transforms ]),
@@ -20,7 +23,6 @@ pull(
 )
 
 // Create css files (sass & minify)
-var css = pair()
 pull(
   read(__dirname + '/style/**/*.sass'),
   sass(),
@@ -28,15 +30,14 @@ pull(
   css.sink
 )
 
-// Create html from the js and css file streams
+// Create html from meta options + the js and css file streams
 pull(
   html('foo.html', {
-    // Meta
     title: 'foo',
     description: 'Foo bar baz ...',
-    
-    // Contents
-    js, css, body: '<div clas="app"></div>'
+    js,
+    css, 
+    body: '<div clas="app"></div>'
   }),
   write(__dirname + '/out', err => {
     // Finished
