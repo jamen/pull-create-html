@@ -3,6 +3,8 @@
 
 > Create an html file from js and css file streams
 
+A stream that produces a [html pull-stream file](https://github.com/jamen/pull-files) with optional settings such as a title, various meta options, js and css content streams, and a body, etc.
+
 ```js
 var pull = require('pull-stream')
 var pair = require('pull-pair')
@@ -44,8 +46,6 @@ pull(
   })
 )
 ```
-
-A stream that produces an html a [pull-stream file](https://github.com/jamen/pull-files), with optional settings such as js and css streams, a title, various meta options, and a body.
 
 ## Install
 
