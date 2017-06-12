@@ -9,12 +9,14 @@ test('bundles html', t => {
   t.plan(2)
 
   pull(
-    read([ 'foo.js', 'foo.css' ], { cwd: __dirname }),
-    html('foo.html', { title: 'testing' }),
+    html('foo.html', {
+      title: 'testing',
+      js: read(__dirname + '/foo.js'),
+      css: read(__dirname + '/foo.css')
+    }),
     drain(file => {
-      t.true(file, 'got file')
-      console.log(file)
-      console.log(file.data.toString())
+      t.is(file.path, 'foo.html', 'got html file')
+
     }, t.false)
   )
 })
@@ -23,8 +25,10 @@ test('script async', t => {
   t.plan(3)
 
   pull(
-    read([ 'foo.js'], { cwd: __dirname }),
-    html('foo.html', { scriptAsync: true}),
+    html('foo.html', {
+      js: read(__dirname + '/foo.js'),
+      scriptAsync: true
+    }),
     drain(file => {
       const html = file.data.toString()
       t.assert(html.indexOf('async="true"') > -1, 'script has async attribute')

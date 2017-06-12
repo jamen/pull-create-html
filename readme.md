@@ -1,43 +1,51 @@
 
-# pull-bundle-html
+# pull-create-html
 
-> Bundle JS and CSS into boilerplate HTML
+> Create an html file from js and css file streams
 
 ```js
-const pull = require('pull-stream')
-const { read, write } = require('pull-files')
-const bundle = require('pull-bundle-js')
-const html = require('pull-bundle-html')
+var pull = require('pull-stream')
+var { read, write } = require('pull-files')
+var bundle = require('pull-bundle-js')
+var html = require('pull-bundle-html')
 
 pull(
-  read([ 'index.js', 'index.css' ]),
-  bundle([ 'esfp' ]),
-  html('app.html', { ...options }),
-  write('out', err => {
-    // done
+  html('app.html', {
+    title: '',
+    description: 'My website'
+    // Others...
+  
+    js: pull(
+      read(__dirname + '/lib/index.js'),
+      bundle([ ...transforms ])
+    ),
+
+    css: pull(
+      read(__dirname + '/style/index.sass'),
+      sass()
+    )
+  }),
+  write(__dirname + '/out', err => {
+    // Finished
   })
 )
 ```
 
-Also look at [`pull-bundle-js`](https://github.com/jamen/pull-bundle-js) to Browserify the JavaScript.
 
 ## Install
 
 ```sh
-npm install --save pull-bundle-html
-```
-
-```sh
-yarn add pull-bundle-html
+npm i pull-create-html
 ```
 
 ## Usage
 
-### `html(path?, settings)`
+### `html(path?, options)`
 
-Takes JS and CSS files out of the stream, and bundles them into boilerplate HTML with your settings
+Creates an html file from js and css file streams, with several options configure the boilerplate html
 
- - `pass` to let non-JS/CSS files pass through.  Defaults to `true`
+ - `js` a stream of js files which put in `<script>`
+ - `css` a stream of css files which get put in `<style>`
  - `lang` sets the `<html lang=...>` attribute.  Defaults to `en-US`
  - `title` sets the `<title>...</title>` element
  - `body` is a string of HTML to put before where the JS is injected.  e.g. a mount element for vdom
@@ -47,10 +55,45 @@ Takes JS and CSS files out of the stream, and bundles them into boilerplate HTML
  - `base` sets the `file.base` on the output HTML file
  - `scriptAsync` lets the JS files load async by setting `<script async="true">` in the `<head>`
 
+Files in the js/css stream are [concatenated together](https://github.com/jamen/pull-concat-files).  Allows streaming a directory of plain css files, for example.
+
+Also see [`pull-pair`](https://github.com/pull-stream/pull-pair) for linking separate js/css pipelines:
+
+```js
+var js = pair()
+var css = pair()
+
+pull(
+  read(__dirname + '/lib/index.js'),
+  bundle([ ...transforms ]),
+  minify(),
+  js.sink
+)
+
+pull(
+  read(__dirname + '/style/**/*.sass'),
+  sass(),
+  minify(),
+  css.sink
+)
+
+pull(
+  // Create html from the js and css streams
+  html('foo.html', { title: 'foo', js, css  }),
+  write(__dirname + '/out', err => {
+    // Finished
+  })
+)
+```
+
+
 # Also see
 
- - [`pull-files`](https://github.com/jamen/pull-files) for reading and writing files
- - [`pull-bundle-js`](https://github.com/jamen/pull-bundle-js) for bundling JS with Browserify
+ - [`pull-files`](https://github.com/jamen/pull-files)
+ - [`pull-bundle-js`](https://github.com/jamen/pull-bundle-js)
+ - [`pull-minify-js`](https://github.com/jamen/pull-minify-js)
+ - [`pull-concat-files`](https://github.com/jamen/pull-concat-files)
+ - [`pull-minify-css`](https://github.com/jamen/pull-minify-css)
 
 ---
 

@@ -1,10 +1,10 @@
 {
-  "name": "pull-bundle-html",
-  "description": "Bundle JS and CSS into boilerplate HTML",
+  "name": "pull-create-html",
+  "description": "Create an html file from js and css file streams",
   "version": "0.5.0",
   "author": "Jamen Marz (https://git.io/jamen)",
   "main": "index.js",
-  "repository": "jamen/pull-bundle-html",
+  "repository": "jamen/pull-create-html",
   "scripts": {
     "test": "node test"
   },
@@ -12,9 +12,8 @@
     "jamen",
     "pull-stream",
     "pull-build-tools",
-    "pull-bundle",
-    "bundle",
     "html",
+    "create",
     "boilerplate"
   ],
   "devDependencies": {
@@ -22,6 +21,9 @@
     "tape": "^4.6.3"
   },
   "dependencies": {
-    "h2ml": "^0.3.0"
+    "h2ml": "^0.3.0",
+    "pull-cat": "^1.1.11",
+    "pull-concat-files": "^0.2.0",
+    "pull-stream": "^3.6.0"
   }
 }
