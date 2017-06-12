@@ -1,7 +1,7 @@
 {
   "name": "pull-create-html",
   "description": "Create an html file from js and css file streams",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "author": "Jamen Marz (https://git.io/jamen)",
   "main": "index.js",
   "repository": "jamen/pull-create-html",
