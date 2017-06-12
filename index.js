@@ -47,8 +47,8 @@ function html (path, options) {
       sending = true
       pull(
         cat([
-          options.js,
-          options.css
+          pull(options.js, concat()),
+          pull(options.css, concat())
         ]),
         collect(function (err, files) {
           if (err) return cb(err)
