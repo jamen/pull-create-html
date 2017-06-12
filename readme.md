@@ -10,8 +10,6 @@ var { read, write } = require('pull-files')
 var bundle = require('pull-bundle-js')
 var html = require('pull-create-html')
 
-var css = pair()
-
 // Create js files (bundle & minify)
 var js = pair()
 pull(
@@ -22,6 +20,7 @@ pull(
 )
 
 // Create css files (sass & minify)
+var css = pair()
 pull(
   read(__dirname + '/style/**/*.sass'),
   sass(),
