@@ -7,7 +7,7 @@
 var pull = require('pull-stream')
 var { read, write } = require('pull-files')
 var bundle = require('pull-bundle-js')
-var html = require('pull-bundle-html')
+var html = require('pull-create-html')
 
 pull(
   html('app.html', {
