@@ -35,11 +35,13 @@ pull(
 // Create html from meta options + the js and css file streams
 pull(
   html('foo.html', {
+    // Meta options
     title: 'foo',
     description: 'Foo bar baz ...',
+    body: '<div clas="app"></div>',
+    // File streams
     js,
-    css, 
-    body: '<div clas="app"></div>'
+    css 
   }),
   write(__dirname + '/out', err => {
     // Finished
