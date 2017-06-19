@@ -37,4 +37,18 @@ test('script async', t => {
   )
 })
 
+test('links', t => {
+  t.plan(3)
+
+  pull(
+    html('foo.html', {
+      links: [ { type: 'text/css', rel: 'stylesheet', href: 'foo.css' } ]
+    }),
+    drain(file => {
+      const html = file.data.toString()
+      t.assert(html.indexOf('<link') > -1, 'has link')
+      t.assert(html.indexOf('href="foo.css"') > -1, 'points to foo.css')
+    }, t.false)
+  )
+})
 

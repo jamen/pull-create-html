@@ -71,6 +71,7 @@ Creates an html file from js and css file streams, with several options configur
  - `keywords` sets the `<meta name='keywords'>` element
  - `base` sets the `file.base` on the output HTML file
  - `scriptAsync` lets the JS files load async by setting `<script async="true">` in the `<head>`
+ - `links` Lets you specify `<link {...data}>` in the `<head>` as objects (see below)
 
 Files in the js/css stream are [concatenated together](https://github.com/jamen/pull-concat-files).  Allows streaming a directory of plain css files, for example.
 
@@ -95,6 +96,15 @@ pull(
     // Finished
   })
 )
+```
+
+For using `options.links`, you specify a list of objects containing attributes:
+
+```js
+links: [
+  { href: 'foo.css', type: 'text/css', rel: 'stylesheet' }
+  // ...
+]
 ```
 
 # Also see
