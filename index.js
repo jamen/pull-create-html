@@ -65,10 +65,10 @@ function html (path, options) {
                   h('meta', { name: 'description', content: options.description }),
                   h('meta', { name: 'keywords', content: options.keywords }),
                   options.links ? options.links.map(link => h('link', link)).join('') : null,
-                  h('style', css),
-                  options.scriptAsync ? h('script', { 'async': true }, js) : null
+                  css ? h('style', css) : null,
+                  options.scriptAsync && js ? h('script', { 'async': true }, js) : null
                 ]),
-                h('body', [ options.body, !options.scriptAsync ? h('script', js) : null ])
+                h('body', [ options.body, !options.scriptAsync && js ? h('script', js) : null ])
               ])
             )
 

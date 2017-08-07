@@ -98,7 +98,7 @@ pull(
 )
 ```
 
-For using `options.links`, you specify a list of objects containing attributes:
+For using `options.links`, you specify a list of objects:
 
 ```js
 links: [
