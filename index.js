@@ -19,9 +19,9 @@ function html (path, options) {
     lang: 'en-US',
     title: '',
     charset: 'utf-8',
-    description: '',
+    meta: [],
+    links: [],
     body: '',
-    keywords: '',
     base: null
   }, options)
   
@@ -62,9 +62,8 @@ function html (path, options) {
                 h('head', [
                   h('title', options.title),
                   h('meta', { charset: options.charset }),
-                  h('meta', { name: 'description', content: options.description }),
-                  h('meta', { name: 'keywords', content: options.keywords }),
-                  options.links ? options.links.map(link => h('link', link)).join('') : null,
+                  options.meta.map(m => h('meta', m)).join(''), 
+                  options.links.map(link => h('link', link)).join(''),
                   css ? h('style', css) : null,
                   options.scriptAsync && js ? h('script', { 'async': true }, js) : null
                 ]),

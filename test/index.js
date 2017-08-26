@@ -52,3 +52,22 @@ test('links', t => {
   )
 })
 
+test('meta', t => {
+  t.plan(3)
+
+  pull(
+    html('foo.html', {
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1, user-scalable=0' }
+      ]
+    }),
+    drain(file => {
+      const html = file.data.toString()
+      t.assert(html.indexOf('<meta') > -1, 'has a meta tag')
+      t.assert(html.indexOf('name="viewport"') > -1, 'has a viewport meta')
+      // console.log(html)
+    }, t.false)
+  )
+})
+
+
